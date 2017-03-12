@@ -7,6 +7,7 @@ import javax.swing.JLabel;
  *
  * @author dpMelian
  */
+
 public class Modificar extends javax.swing.JDialog {
     private static String spawn;
 

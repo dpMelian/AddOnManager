@@ -7,6 +7,7 @@ import java.util.*;
  *
  * @author dpMelian
  */
+
 public class AddOnManager {
     public static Map<String,
             String> ldapContent = new HashMap<String, String>();

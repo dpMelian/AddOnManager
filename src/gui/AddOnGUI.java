@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,11 +26,10 @@ public class AddOnGUI extends javax.swing.JFrame {
     public void showImg(String path){
         try{
             ImageIcon icon = new ImageIcon(this.getClass().
-                    getResource("/resources/" + path + ".jpg");
+                    getResource("/resources/" + path + ".jpg"));
             Image scaleImage = icon.getImage().getScaledInstance(192,
                 -1,Image.SCALE_AREA_AVERAGING);
             
-        
             img.setIcon(new ImageIcon(scaleImage));
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null,
@@ -103,6 +103,8 @@ public class AddOnGUI extends javax.swing.JFrame {
         img = new javax.swing.JLabel();
         ordenar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
+        etiq1 = new javax.swing.JLabel();
+        codeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +151,8 @@ public class AddOnGUI extends javax.swing.JFrame {
             }
         });
 
+        etiq1.setText("Código spawn:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,23 +167,28 @@ public class AddOnGUI extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ordenar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                .addGap(74, 74, 74)
+                .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addGap(71, 71, 71)
                 .addComponent(img)
                 .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(93, 93, 93)
-                .addComponent(anadir)
-                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(anadir)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiq1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 296, Short.MAX_VALUE))
+                        .addGap(107, 300, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(modificar)
-                        .addGap(95, 95, 95))))
+                        .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,17 +201,19 @@ public class AddOnGUI extends javax.swing.JFrame {
                         .addComponent(ordenar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(img)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(img)
+                            .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(anadir)
                     .addComponent(borrar)
                     .addComponent(modificar))
                 .addGap(45, 45, 45)
-                .addComponent(salir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salir)
+                    .addComponent(etiq1)
+                    .addComponent(codeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
 
@@ -224,8 +235,7 @@ public class AddOnGUI extends javax.swing.JFrame {
     private void list1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list1ActionPerformed
         // TODO add your handling code here:
         String key = list1.getSelectedItem();
-        System.out.println(key);
-        System.out.println(AddOnManager.ldapContent.get(key));
+        setCodeLabel(AddOnManager.ldapContent.get(key));
         
         try{
             showImg(AddOnManager.ldapContent.get(key));
@@ -288,6 +298,10 @@ public class AddOnGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_modificarActionPerformed
 
+    public static void setCodeLabel(String str) {
+        codeLabel.setText(str);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -314,6 +328,7 @@ public class AddOnGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddOnGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -326,6 +341,8 @@ public class AddOnGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anadir;
     private javax.swing.JButton borrar;
+    public static javax.swing.JLabel codeLabel;
+    private javax.swing.JLabel etiq1;
     public static javax.swing.JLabel img;
     public static java.awt.List list1;
     private javax.swing.JLabel logo;

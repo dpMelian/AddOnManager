@@ -1,11 +1,7 @@
 package gui;
 
-import addonmanager.AddOn;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import javax.swing.JFileChooser;
-import addonmanager.AddOnManager;
 import java.nio.file.Files;
 import static java.nio.file.StandardCopyOption.*;
 
@@ -13,6 +9,7 @@ import static java.nio.file.StandardCopyOption.*;
  *
  * @author dpMelian
  */
+
 public class FileChooser {
     private static String current;
     

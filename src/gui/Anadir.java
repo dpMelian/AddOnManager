@@ -2,7 +2,6 @@ package gui;
 
 import addonmanager.AddOn;
 import addonmanager.AddOnManager;
-import gui.FileChooser;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
@@ -12,6 +11,7 @@ import javax.swing.JTextField;
  *
  * @author dpMelian
  */
+
 public class Anadir extends javax.swing.JDialog {
 
     /**

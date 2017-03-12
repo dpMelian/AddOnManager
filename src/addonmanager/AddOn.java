@@ -1,11 +1,8 @@
 package addonmanager;
 
-import addonmanager.AddOnManager;
 import gui.AddOnGUI;
-import gui.FileChooser;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
@@ -14,6 +11,7 @@ import java.util.Properties;
  *
  * @author dpMelian
  */
+
 public class AddOn {
 
     private String name;
