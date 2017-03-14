@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -247,26 +246,30 @@ public class AddOnGUI extends javax.swing.JFrame {
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
-        System.out.println(list1.getSelectedItem());
-        AddOnManager.ldapContent.remove(list1.getSelectedItem());
-        
-        System.out.println(AddOnManager.ldapContent);
-        
-        try {
-            File data = new File("data.properties");
-            data.createNewFile();
-                
-            input = new FileInputStream(data);
-
-            // load a properties file
-            prop.load(input);
-            prop.remove(list1.getSelectedItem());
-            System.out.println(prop);
-            prop.store(new FileOutputStream("data.properties"), null);
-            list1.remove(list1.getSelectedItem());
+        if (list1.getSelectedItem() != null &&
+                !list1.getSelectedItem().equals("")) {
+            AddOnManager.ldapContent.remove(list1.getSelectedItem());
             
-        } catch(Exception e){
-            e.printStackTrace();
+            try {
+                File data = new File("data.properties");
+                data.createNewFile();
+
+                input = new FileInputStream(data);
+
+                // load a properties file
+                prop.load(input);
+                prop.remove(list1.getSelectedItem());
+                System.out.println(prop);
+                prop.store(new FileOutputStream("data.properties"), null);
+                list1.remove(list1.getSelectedItem());
+
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null,
+                "Selecciona un vehículo");
         }
     }//GEN-LAST:event_borrarActionPerformed
 

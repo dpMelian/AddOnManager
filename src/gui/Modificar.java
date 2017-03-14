@@ -1,7 +1,6 @@
 package gui;
 
 import addonmanager.AddOnManager;
-import javax.swing.JLabel;
 
 /**
  *
