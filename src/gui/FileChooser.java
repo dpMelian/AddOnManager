@@ -23,13 +23,14 @@ public class FileChooser {
                 spawn + ".jpg");
         dest.mkdirs();
         
-        try{
-            Files.copy(src.toPath(), dest.toPath(), REPLACE_EXISTING);
-        } catch (Exception e){
-            e.printStackTrace();
+        if(src != null){
+            try{
+                Files.copy(src.toPath(), dest.toPath(), REPLACE_EXISTING);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            current = src.getAbsolutePath();
         }
-        
-        current = src.getAbsolutePath();
     }
 
     public static String getCurrent() {
